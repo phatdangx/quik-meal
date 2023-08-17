@@ -1,0 +1,7 @@
+mongodb:
+  host: mongodb+srv://username:password@clusterURL
+  port: 27017
+  user: user
+  pass: password
+  poolsize: 100
+  max_idle_timeout: 30
