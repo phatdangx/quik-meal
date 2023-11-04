@@ -2,6 +2,8 @@ package app
 
 import (
 	"context"
+	"os"
+	"os/signal"
 	"time"
 	"user/handler"
 	"user/repository/mongodb"
@@ -46,4 +48,12 @@ func Start() {
 			log.Error(err)
 		}
 	}()
+
+	// wait for interrupt signal to gracefully shutdown the server with
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, os.Interrupt)
+	<-quit
+	if err := e.Shutdown(ctx); err != nil {
+		e.Logger.Fatal(err)
+	}
 }
