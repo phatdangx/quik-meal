@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/signal"
 	"time"
+	"user/config"
 	"user/handler"
 	"user/repository/mongodb"
 	"user/transport/http/routes"
@@ -22,7 +23,7 @@ func Start() {
 	// init db client
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(config.Config.MongoDB.Host))
 	if err != nil {
 		log.Error("can not connect mongodb")
 	}

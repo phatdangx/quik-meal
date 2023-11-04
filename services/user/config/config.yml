@@ -1,5 +1,5 @@
 mongodb:
-  host: mongodb+srv://username:password@clusterURL
+  host: mongodb://localhost:27017
   port: 27017
   user: user
   pass: password
