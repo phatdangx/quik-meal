@@ -1,12 +1,12 @@
 package routes
 
 import (
-	"user/transport/http"
+	"user/handler"
 
 	"github.com/labstack/echo/v4"
 )
 
-func Private(e *echo.Echo, handler *http.UserHandler) {
+func Private(e *echo.Echo, h *handler.PrivateHandler) {
 	privateRoute := e.Group("/v1/private/user")
-	privateRoute.GET("/user/:id", handler.GetUserDetail)
+	privateRoute.GET("/register", h.RegisterAccount)
 }
